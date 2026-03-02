@@ -15,7 +15,10 @@ export const HeroSection = () => (
           </div>
           <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground leading-tight">
             Καλώς ήρθατε στο{" "}
-            <span className="text-primary">ΕΠΙΤΥΧΕΙΝ</span>
+            <span className="relative inline-block text-primary">
+              ΕΠΙΤΥΧΕΙΝ
+              <span className="absolute -bottom-1 left-0 h-1 w-full rounded-full bg-primary/40" />
+            </span>
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed">
             Φροντιστήριο υψηλού επιπέδου στην Ηλιούπολη. Έμπειροι καθηγητές,

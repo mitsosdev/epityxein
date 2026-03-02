@@ -6,6 +6,7 @@ import { HeroSection } from "@/components/home/hero-section";
 import { StatsSection } from "@/components/home/stats-section";
 import { SuccessesSection } from "@/components/home/successes-section";
 import { TeachersSection } from "@/components/home/teachers-section";
+import { TestimonialSection } from "@/components/home/testimonial-section";
 import { WhyUsSection } from "@/components/home/why-us-section";
 import { BasePageProps } from "@/types/page-props";
 
@@ -21,6 +22,7 @@ const Home = async ({ params }: BasePageProps) => {
       <CoursesSection />
       <SuccessesSection />
       <TeachersSection />
+      <TestimonialSection />
       <CtaSection />
     </main>
   );
