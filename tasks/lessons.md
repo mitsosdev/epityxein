@@ -122,6 +122,24 @@ Always use typography components from `@/components/ui/typography.tsx`:
   }
   ```
 
+## Screenshot Debugging
+
+### If screenshots look weird (invisible text, missing elements, wrong colors)
+**First thing to check: dark mode.** The ThemeProvider uses `defaultTheme="system"`, so if the OS is in dark mode, `html` gets `class="dark"`. This makes `text-foreground` white — invisible on `bg-white` backgrounds.
+
+**Diagnosis steps (run in order):**
+1. Inspect the rendered `html` class at runtime:
+   ```js
+   node -e "const puppeteer = require('puppeteer'); (async()=>{ const b=await puppeteer.launch({headless:true}); const p=await b.newPage(); await p.goto('http://localhost:3000/el',{waitUntil:'networkidle2'}); console.log(await p.evaluate(()=>document.documentElement.className)); await b.close(); })()"
+   ```
+   If output is `dark` → dark mode is the culprit.
+2. If the site does not need dark mode, fix in `components/providers.tsx`:
+   ```tsx
+   <NextThemesProvider attribute="class" defaultTheme="light" disableTransitionOnChange forcedTheme="light">
+   ```
+
+**Root cause pattern:** `bg-white` + `text-foreground` breaks in dark mode (white text on white bg = invisible). Always use `bg-background` + `text-foreground` together, OR force a theme.
+
 ## Workflow
 
 - **Lessons go in `tasks/lessons.md`** - NEVER use the auto memory system for coding rules or user preferences. After ANY correction from the user, immediately update THIS file. Read this file at session start.

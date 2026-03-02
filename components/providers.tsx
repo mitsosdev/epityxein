@@ -1,8 +1,9 @@
 "use client";
 
-import { NextIntlClientProvider, AbstractIntlMessages } from "next-intl";
 import { SessionProvider } from "next-auth/react";
+import { AbstractIntlMessages,NextIntlClientProvider } from "next-intl";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+
 import { Toaster } from "@/components/ui/sonner";
 
 type Props = {
@@ -16,9 +17,9 @@ export const Providers = ({ children, messages, locale }: Props) => {
     <SessionProvider>
       <NextThemesProvider
         attribute="class"
-        defaultTheme="system"
-        enableSystem
+        defaultTheme="light"
         disableTransitionOnChange
+        forcedTheme="light"
       >
         <NextIntlClientProvider messages={messages} locale={locale}>
           {children}

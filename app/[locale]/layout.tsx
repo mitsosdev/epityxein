@@ -1,22 +1,27 @@
-import type { Metadata } from "next";
-import { hasLocale } from "next-intl";
-import { notFound } from "next/navigation";
-import { setRequestLocale, getMessages } from "next-intl/server";
-import { Roboto } from "next/font/google";
-import { routing } from "@/lib/i18n/routing";
-import { Providers } from "@/components/providers";
-import { BaseLayoutProps } from "@/types/page-props";
 import "./globals.css";
+
+import type { Metadata } from "next";
+import { Roboto } from "next/font/google";
+import { notFound } from "next/navigation";
+import { hasLocale } from "next-intl";
+import { getMessages,setRequestLocale } from "next-intl/server";
+
+import { Providers } from "@/components/providers";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteNavbar } from "@/components/site-navbar";
+import { routing } from "@/lib/i18n/routing";
+import { BaseLayoutProps } from "@/types/page-props";
 
 const roboto = Roboto({
   variable: "--font-roboto",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  subsets: ["latin", "greek"],
+  weight: ["400", "500", "700", "900"],
 });
 
 export const metadata: Metadata = {
-  title: "App",
-  description: "",
+  title: "ΕΠΙΤΥΧΕΙΝ – Φροντιστήριο Ηλιούπολης",
+  description:
+    "Φροντιστήριο υψηλού επιπέδου στην Ηλιούπολη. Έμπειροι καθηγητές, μικρά τμήματα, 90% ποσοστό επιτυχίας στις πανελλαδικές εξετάσεις.",
 };
 
 export const generateStaticParams = () => {
@@ -35,7 +40,9 @@ const LocaleLayout = async ({ children, params }: BaseLayoutProps) => {
     <html lang={locale} suppressHydrationWarning>
       <body className={`${roboto.variable} font-sans antialiased`}>
         <Providers messages={messages} locale={locale}>
+          <SiteNavbar />
           {children}
+          <SiteFooter />
         </Providers>
       </body>
     </html>

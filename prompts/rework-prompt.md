@@ -6,13 +6,13 @@ Paste this into a Claude Code session to rework an existing website into this Ne
 
 ## Usage
 
-Replace `<TARGET_URL>` with the website you want to rework, then paste everything below the line into Claude Code.
+Replace `https://epityxein.gr/` with the website you want to rework, then paste everything below the line into Claude Code.
 
 ---
 
 ## Prompt
 
-I want you to rework an existing website into this Next.js project. The target site is: `<TARGET_URL>`
+I want you to rework an existing website into this Next.js project. The target site is: `https://epityxein.gr/`
 
 Follow CLAUDE.md and tasks/lessons.md for all conventions, code style, and component usage.
 
